@@ -13,10 +13,10 @@ class Option implements Stringable
     private $selected = false;
     private $disabled = false;
 
-    public function __construct(string $label, int|float|string $value, bool $selected = false, bool $disabled = false)
+    public function __construct(string $label, string|int|float|bool|null|Stringable $value, bool $selected = false, bool $disabled = false)
     {
         $this->label = $label;
-        $this->value = $value;
+        $this->value = (string)$value;
         $this->selected = $selected;
         $this->disabled = $disabled;
     }

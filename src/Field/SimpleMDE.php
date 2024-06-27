@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PHPOMG\Form\Field;
 
 use PHPOMG\Form\ItemInterface;
+use Stringable;
 
 class SimpleMDE implements ItemInterface
 {
@@ -18,11 +19,11 @@ class SimpleMDE implements ItemInterface
 
     private $upload_url = '';
 
-    public function __construct(string $label, string $name, string $value = '')
+    public function __construct(string $label, string $name, string|int|float|bool|null|Stringable $value = '')
     {
         $this->label = $label;
         $this->name = $name;
-        $this->value = $value;
+        $this->value = (string)$value;
     }
 
     public function setHelp(string $help): self

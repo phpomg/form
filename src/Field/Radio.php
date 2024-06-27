@@ -23,10 +23,10 @@ class Radio implements Stringable
     private $autofocus = false;
     private $autocomplete = false;
 
-    public function __construct(string $label, $value = null, bool $checked = false)
+    public function __construct(string $label, string|int|float|bool|null|Stringable $value = null, bool $checked = false)
     {
         $this->label = $label;
-        $this->value = $value;
+        $this->value = (string)$value;
         $this->checked = $checked;
     }
 

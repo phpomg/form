@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PHPOMG\Form\Field;
 
 use PHPOMG\Form\ItemInterface;
+use Stringable;
 
 class LevelSelect implements ItemInterface
 {
@@ -16,19 +17,19 @@ class LevelSelect implements ItemInterface
 
     private $items = [];
 
-    public function __construct(string $label, string $name, string $value = '')
+    public function __construct(string $label, string $name, string|int|float|bool|null|Stringable $value = '')
     {
         $this->label = $label;
         $this->name = $name;
-        $this->value = $value;
+        $this->value = (string)$value;
     }
 
-    public function addItem(string $title, string $value, string $parent = '', string $group = '', bool $disabled = false): self
+    public function addItem(string $title, string|int|float|bool|null|Stringable $value, string|int|float|bool|null|Stringable $parent = '', string $group = '', bool $disabled = false): self
     {
         array_push($this->items, [
             'title' => $title,
-            'value' => $value,
-            'parent' => $parent,
+            'value' => (string)$value,
+            'parent' => (string)$parent,
             'group' => $group,
             'disabled' => $disabled,
         ]);

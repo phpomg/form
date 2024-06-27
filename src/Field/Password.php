@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PHPOMG\Form\Field;
 
 use PHPOMG\Form\ItemInterface;
+use Stringable;
 
 class Password implements ItemInterface
 {
@@ -31,11 +32,11 @@ class Password implements ItemInterface
     private $pattern = '';
     private $placeholder = '';
 
-    public function __construct(string $label, string $name, string $value = '')
+    public function __construct(string $label, string|int|float|bool|null|Stringable $name, string $value = '')
     {
         $this->label = $label;
         $this->name = $name;
-        $this->value = $value;
+        $this->value = (string)$value;
     }
 
     public function setHelp(string $help): self

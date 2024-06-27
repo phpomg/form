@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PHPOMG\Form\Field;
 
 use PHPOMG\Form\ItemInterface;
+use Stringable;
 
 /**
  * @property \PHPOMG\Form\Field\SwitchItem[] $switchs
@@ -19,11 +20,11 @@ class SwitchTab implements ItemInterface
 
     private $switchs = [];
 
-    public function __construct(string $label, string $name, $value = null)
+    public function __construct(string $label, string $name, string|int|float|bool|null|Stringable $value = null)
     {
         $this->label = $label;
         $this->name = $name;
-        $this->value = $value;
+        $this->value = (string)$value;
         $this->switchs = [];
     }
 

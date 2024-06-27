@@ -23,10 +23,10 @@ class Checkbox implements Stringable
 
     private $autofocus = false;
 
-    public function __construct(string $label, string $value, bool $checked = false)
+    public function __construct(string $label, string|int|float|bool|null|Stringable $value, bool $checked = false)
     {
         $this->label = $label;
-        $this->value = $value;
+        $this->value = (string)$value;
         $this->checked = $checked;
     }
 

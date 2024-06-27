@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PHPOMG\Form\Field;
 
 use PHPOMG\Form\ItemInterface;
+use Stringable;
 
 class Color implements ItemInterface
 {
@@ -26,11 +27,11 @@ class Color implements ItemInterface
     private $autocomplete = false;
     private $autofocus = false;
 
-    public function __construct(string $label, string $name, string $value = '')
+    public function __construct(string $label, string $name, string|null|Stringable $value = '')
     {
         $this->label = $label;
         $this->name = $name;
-        $this->value = $value;
+        $this->value = (string)$value;
     }
 
     public function setHelp(string $help): self

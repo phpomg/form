@@ -5,21 +5,30 @@ declare(strict_types=1);
 namespace PHPOMG\Form\Field;
 
 use PHPOMG\Form\ItemInterface;
+use Stringable;
 
 class Pictures implements ItemInterface
 {
     private $label = '';
     private $name = '';
-    private $pics = '';
+    private $pics = [];
     private $upload_url = '';
     private $help = '';
 
-    public function __construct(string $label, string $name, string $upload_url, array $pics = [])
+    public function __construct(string $label, string $name, string $upload_url)
     {
         $this->label = $label;
         $this->name = $name;
         $this->upload_url = $upload_url;
-        $this->pics = $pics;
+    }
+
+    public function addPic(string $src, string|int|float|bool|null|Stringable $size = '', string|int|float|bool|null|Stringable $title = '')
+    {
+        $this->pics[] = [
+            'src' => $src,
+            'title' => (string)$title,
+            'size' => (string)$size,
+        ];
     }
 
     public function setHelp(string $help)

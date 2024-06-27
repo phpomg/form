@@ -11,13 +11,13 @@ class Html implements ItemInterface
 {
     private $html = '';
 
-    public function __construct(string|Stringable $html)
+    public function __construct(string|int|float|bool|null|Stringable $html)
     {
-        $this->html = $html;
+        $this->html = (string)$html;
     }
 
     public function __toString(): string
     {
-        return $this->html . '';
+        return $this->html;
     }
 }

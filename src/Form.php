@@ -89,13 +89,13 @@ class Form implements Stringable
                             if (xmlhttp.status == 200) {
                                 if (typeof(xmlhttp.response) != 'object' || xmlhttp.response === null) {
                                     alert("接口错误：" + JSON.stringify(xmlhttp.response));
-                                } else if (!response.hasOwnProperty('message')) {
+                                } else if (!xmlhttp.response.hasOwnProperty('message')) {
                                     alert("接口错误：" + JSON.stringify(xmlhttp.response));
                                 }
                                 if (xmlhttp.response.message) {
                                     alert(xmlhttp.response.message);
                                 }
-                                if (!xmlhttp.response.errcode == 0) {
+                                if (xmlhttp.response.status) {
                                     window.history.go(-1);
                                 } else {
                                     alert("错误代码：" + xmlhttp.response.errcode);

@@ -6,6 +6,7 @@ namespace PHPOMG\Form\Field;
 
 use PHPOMG\Form\ItemInterface;
 use PHPOMG\Form\Layout\Flex;
+use Stringable;
 
 class SwitchItem
 {
@@ -14,10 +15,10 @@ class SwitchItem
 
     private $flex;
 
-    public function __construct(string $label, $value)
+    public function __construct(string $label, string|int|float|bool|null|Stringable $value)
     {
         $this->label = $label;
-        $this->value = $value;
+        $this->value = (string)$value;
         $this->flex = new Flex;
     }
 

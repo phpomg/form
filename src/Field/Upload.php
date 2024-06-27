@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PHPOMG\Form\Field;
 
 use PHPOMG\Form\ItemInterface;
+use Stringable;
 
 class Upload implements ItemInterface
 {
@@ -15,11 +16,11 @@ class Upload implements ItemInterface
 
     private $help = '';
 
-    public function __construct(string $label, string $name, string $upload_url, string $value = '')
+    public function __construct(string $label, string $name, string $upload_url, string|int|float|bool|null|Stringable $value = '')
     {
         $this->label = $label;
         $this->name = $name;
-        $this->value = $value;
+        $this->value = (string)$value;
         $this->upload_url = $upload_url;
     }
 

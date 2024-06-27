@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PHPOMG\Form\Field;
 
 use PHPOMG\Form\ItemInterface;
+use Stringable;
 
 class Textarea implements ItemInterface
 {
@@ -31,11 +32,11 @@ class Textarea implements ItemInterface
     private $required = null;
     private $disabled = null;
 
-    public function __construct(string $label, string $name, $value = null)
+    public function __construct(string $label, string $name, string|int|float|bool|null|Stringable $value = null)
     {
         $this->label = $label;
         $this->name = $name;
-        $this->value = $value;
+        $this->value = (string)$value;
     }
 
     public function setWrap(string $wrap): self

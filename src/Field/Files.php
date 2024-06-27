@@ -5,22 +5,31 @@ declare(strict_types=1);
 namespace PHPOMG\Form\Field;
 
 use PHPOMG\Form\ItemInterface;
+use Stringable;
 
 class Files implements ItemInterface
 {
     private $label = '';
     private $name = '';
-    private $value = '';
+    private $files = '';
     private $upload_url = '';
 
     private $help = '';
 
-    public function __construct(string $label, string $name, array $value = [], string $upload_url = null)
+    public function __construct(string $label, string $name, string $upload_url = null)
     {
         $this->label = $label;
         $this->name = $name;
-        $this->value = $value;
         $this->upload_url = $upload_url;
+    }
+
+    public function addFile(string $src, string|int|float|bool|null|Stringable $size = '', string|int|float|bool|null|Stringable $title = '')
+    {
+        $this->files[] = [
+            'src' => $src,
+            'title' => (string)$title,
+            'size' => (string)$size,
+        ];
     }
 
     public function setLabel(string $label): self
@@ -37,7 +46,7 @@ class Files implements ItemInterface
 
     public function __toString(): string
     {
-        $files = json_encode($this->value);
+        $files = json_encode($this->files, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         $str = '';
         $str .= '<label class="form-label">' . htmlspecialchars($this->label) . '</label>';
         $str .= <<<str

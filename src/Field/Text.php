@@ -6,6 +6,7 @@ namespace PHPOMG\Form\Field;
 
 use Exception;
 use PHPOMG\Form\ItemInterface;
+use Stringable;
 
 class Text implements ItemInterface
 {
@@ -34,11 +35,11 @@ class Text implements ItemInterface
     private $datalist = [];
     private $datalist_url = '';
 
-    public function __construct(string $label, string $name, string $value = '')
+    public function __construct(string $label, string $name, string|int|float|bool|null|Stringable $value = '')
     {
         $this->label = $label;
         $this->name = $name;
-        $this->value = $value;
+        $this->value = (string)$value;
     }
 
     public function setType(string $type): self
