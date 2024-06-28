@@ -124,8 +124,17 @@ str;
                             const ele = files[key];
                             if(upload_url){
                                 upload_by_form(upload_url, ele, function(response) {
-                                    if (response !== null && response.hasOwnProperty('src')) {
-                                        $(textarea).summernote('insertImage', response.src);
+                                    if (response !== null && response.hasOwnProperty('message') && response.hasOwnProperty('data') && response.hasOwnProperty('status')) {
+                                        if (!response.status) {
+                                            alert(response.message);
+                                        } else {
+                                            var data = response.data;
+                                            if (data !== null && data.hasOwnProperty('src') && data.hasOwnProperty('size') && data.hasOwnProperty('filename')) {
+                                                $(textarea).summernote('insertImage', data.src);
+                                            } else {
+                                                alert('接口错误:' + JSON.stringify(response));
+                                            }
+                                        }
                                     } else {
                                         alert('接口错误:' + JSON.stringify(response));
                                     }

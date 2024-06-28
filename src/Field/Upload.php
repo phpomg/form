@@ -84,8 +84,17 @@ class Upload implements ItemInterface
                 if (Object.hasOwnProperty.call(files, key)) {
                     const ele = files[key];
                     upload_by_form(upload_url, ele, function(response) {
-                        if (response !== null && response.hasOwnProperty('src')) {
-                            field.value = response.src;
+                        if (response !== null && response.hasOwnProperty('message') && response.hasOwnProperty('data') && response.hasOwnProperty('status')) {
+                            if (!response.status) {
+                                alert(response.message);
+                            } else {
+                                var data = response.data;
+                                if (data !== null && data.hasOwnProperty('src') && data.hasOwnProperty('size') && data.hasOwnProperty('filename')) {
+                                    field.value = data.src;
+                                } else {
+                                    alert('接口错误:' + JSON.stringify(response));
+                                }
+                            }
                         } else {
                             alert('接口错误:' + JSON.stringify(response));
                         }

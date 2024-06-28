@@ -192,13 +192,22 @@ class Pictures implements ItemInterface
                 if (Object.hasOwnProperty.call(items, indexInArray)) {
                     const ve = items[indexInArray];
                     upload_by_form(upload_url, ve, function(response) {
-                        if (response !== null && response.hasOwnProperty('src') && response.hasOwnProperty('size') && response.hasOwnProperty('filename')) {
-                            pics.push({
-                                src: response.src,
-                                size: response.size,
-                                title: response.filename,
-                            });
-                            renderValue();
+                        if (response !== null && response.hasOwnProperty('message') && response.hasOwnProperty('data') && response.hasOwnProperty('status')) {
+                            if (!response.status) {
+                                alert(response.message);
+                            } else {
+                                var data = response.data;
+                                if (data !== null && data.hasOwnProperty('src') && data.hasOwnProperty('size') && data.hasOwnProperty('filename')) {
+                                    pics.push({
+                                        src: data.src,
+                                        size: data.size,
+                                        title: data.filename,
+                                    });
+                                    renderValue();
+                                } else {
+                                    alert('接口错误:' + JSON.stringify(response));
+                                }
+                            }
                         } else {
                             alert('接口错误:' + JSON.stringify(response));
                         }

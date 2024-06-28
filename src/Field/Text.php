@@ -216,7 +216,7 @@ class Text implements ItemInterface
                     if (xmlhttp.status == 200) {
                         if(Array.isArray(xmlhttp.response)){
                             datalist.innerHTML='';
-                            xmlhttp.response.forEach(function(el) {
+                            xmlhttp.response.data.forEach(function(el) {
                                 var opt = document.createElement("option");
                                 opt.value=el;
                                 datalist.appendChild(opt);
