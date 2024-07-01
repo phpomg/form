@@ -83,18 +83,16 @@ str;
 <script>
     (function() {
         var textarea = document.currentScript.previousElementSibling;
-        textarea.onfocus=function(){
-            CodeMirror.fromTextArea(textarea, {
-                lineNumbers: true,
-                matchBrackets: true,
-                mode: "htmlmixed",
-                indentUnit: 4,
-                indentWithTabs: true,
-                lineWrapping: true,
-                readOnly: {$readonly},
-                autofocus: {$autofocus},
-            }).focus();
-        }
+        CodeMirror.fromTextArea(textarea, {
+            lineNumbers: true,
+            matchBrackets: true,
+            mode: "htmlmixed",
+            indentUnit: 4,
+            indentWithTabs: true,
+            lineWrapping: true,
+            readOnly: {$readonly},
+            autofocus: {$autofocus},
+        }).focus();
     })()
 </script>
 str;
